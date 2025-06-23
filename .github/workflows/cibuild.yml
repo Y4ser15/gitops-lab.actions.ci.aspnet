@@ -10,12 +10,15 @@ on:
 jobs:
  build:
   runs-on: ubuntu-latest
+  env:
+    configuration: release
+    test_var: test_v1
   steps:
   # checkout all sources from git
   - name: Checkout Sources
     uses: actions/checkout@v4
   - name: echo test
-    run: echo "echo test is working"
+    run: echo "echo test is working" ${{ env.test_var }}
   # install dotnet SDK
   - name: Setup .NET
     uses: actions/setup-dotnet@v1
@@ -26,9 +29,8 @@ jobs:
     run: dotnet restore
   # build the project
   - name: Build
-    run: dotnet build --no-restore
-  # run tests
+    run: dotnet build --no-restore  --configuration ${{ env.configuration }}
   - name: Test
-    run: dotnet test --no-build --verbosity normal
+    run: dotnet test --no-build --verbosity normal --configuration ${{ env.configuration }}
 
   
