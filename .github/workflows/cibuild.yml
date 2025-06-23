@@ -37,4 +37,15 @@ jobs:
   - name: Test
     run: dotnet test --no-build --verbosity normal --configuration ${{ env.configuration }}
 
-  
+
+  - name: Publish 
+    run: dotnet publish --configuration ${{ env.configuration }} --output ${{runner.temp }}/artifact
+  - name: show the artifact
+    run: ls
+  - name: show the artifact 2
+    run: echo ${{ runner.temp }}/artifact
+  - name: Upload the build artifact
+    uses: actions/upload-artifact@v4
+    with: 
+      name: publish
+      path: ${{ runner.temp }}/artifact
