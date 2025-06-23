@@ -6,7 +6,7 @@ namespace BoardGamesInventory.Controllers
 {
   public class GamesController : Controller
   {
-    // private readonly BoardGamesDb db;
+    private readonly BoardGamesDb db;
 
     public GamesController(BoardGamesDb db)
       => this.db = db;
