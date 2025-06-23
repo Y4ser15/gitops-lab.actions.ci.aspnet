@@ -19,6 +19,10 @@ jobs:
     uses: actions/checkout@v4
   - name: echo test
     run: echo "echo test is working" ${{ env.test_var }}
+  - name: ls test
+    run: ls
+  - name: echo test
+    run: python3 here.py
   # install dotnet SDK
   - name: Setup .NET
     uses: actions/setup-dotnet@v1
